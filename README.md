@@ -7,7 +7,7 @@ This is the birthday website rebuilt around the original idea:
 ## Folder layout
 
 ```text
-birthday_website_antigravity/
+birthday_websit/
 ├── index.html
 ├── style.css
 ├── script.js
