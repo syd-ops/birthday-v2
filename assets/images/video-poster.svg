@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <defs>
+    <radialGradient id="bg"><stop offset="0" stop-color="#37204f"/><stop offset="1" stop-color="#050611"/></radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="800" cy="430" r="210" fill="none" stroke="#ffb9dc" stroke-opacity=".35" stroke-width="4"/>
+  <circle cx="800" cy="430" r="175" fill="none" stroke="#a890ff" stroke-opacity=".3" stroke-width="2"/>
+  <text x="800" y="410" text-anchor="middle" fill="#fff" font-family="Georgia, serif" font-size="92">♡</text>
+  <text x="800" y="520" text-anchor="middle" fill="#fff" fill-opacity=".72" font-family="Arial, sans-serif" font-size="34" letter-spacing="8">OUR LITTLE MOVIE</text>
+</svg>

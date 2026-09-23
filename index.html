@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050714">
+  <meta name="description" content="A little universe made for my baby.">
+  <title>my babyyyyy ♡</title>
+  <!-- Performance hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  <!-- Preload first photo for instant orbit display -->
+  <link rel="preload" as="image" href="assets/images/photo-1.jpg">
+  <link rel="stylesheet" href="style.css">
+  <!-- Three.js for 3D Earth -->
+  <script src="https://unpkg.com/three@0.160.1/build/three.min.js" defer></script>
+</head>
+
+
+<body>
+  <div id="starfield" class="starfield" aria-hidden="true"></div>
+  <div class="nebula nebula-one" aria-hidden="true"></div>
+  <div class="nebula nebula-two" aria-hidden="true"></div>
+  <!-- Ambient glow when music plays -->
+  <div id="musicAmbientGlow" aria-hidden="true"></div>
+
+  <main>
+    <!-- OPENING -->
+    <section id="opening" class="opening screen">
+      <div class="opening-glow"></div>
+
+      <p class="eyebrow">a tiny universe made just for you</p>
+
+      <h1 class="baby-title">
+        my babyyyyyyyy
+        <span class="title-hearts">♡ ♡ ♡</span>
+      </h1>
+
+      <p class="opening-line">
+        Come here, birthday girl.<br>
+        I made you a little world.
+      </p>
+
+      <button id="enterUniverse" class="primary-button">
+        Enter your universe <span>♡</span>
+      </button>
+
+      <p class="tiny-note">tap the stars, follow the memories</p>
+    </section>
+
+    <!-- THE WORLD -->
+    <section id="universe" class="universe screen">
+      <div class="universe-heading">
+        <p class="eyebrow">somewhere between here and everywhere</p>
+        <h2>For my baby <span>♡</span></h2>
+        <p>Every little memory has a place here.</p>
+      </div>
+
+      <div class="earth-stage" aria-label="A little universe with Earth and floating memories">
+        <!-- Orbit rings (visual only, memories positioned absolutely) -->
+        <div class="orbit orbit-one" aria-hidden="true"></div>
+        <div class="orbit orbit-two" aria-hidden="true"></div>
+        <div class="orbit orbit-three" aria-hidden="true"></div>
+
+        <!-- Shooting star memory photos -->
+        <button class="memory memory-one" data-image="assets/images/photo-1.jpg"
+          data-caption="One of my favourite little memories of us." aria-label="Open memory photo 1">
+          <span class="memory-orb">
+            <img src="assets/images/photo-1.jpg" alt="Memory 1" loading="lazy">
+            <span class="memory-placeholder-icon" aria-hidden="true">♡</span>
+          </span>
+        </button>
+
+        <button class="memory memory-two" data-image="assets/images/photo-2.jpg"
+          data-caption="A moment I would happily relive." aria-label="Open memory photo 2">
+          <span class="memory-orb">
+            <img src="assets/images/photo-2.jpg" alt="Memory 2" loading="lazy">
+            <span class="memory-placeholder-icon" aria-hidden="true">♡</span>
+          </span>
+        </button>
+
+        <button class="memory memory-three" data-image="assets/images/photo-3.jpg" data-caption="Just us, being us."
+          aria-label="Open memory photo 3">
+          <span class="memory-orb">
+            <img src="assets/images/photo-3.jpg" alt="Memory 3" loading="lazy">
+            <span class="memory-placeholder-icon" aria-hidden="true">♡</span>
+          </span>
+        </button>
+
+        <button class="memory memory-four" data-image="assets/images/photo-4.jpg"
+          data-caption="One of those memories that still makes me smile." aria-label="Open memory photo 4">
+          <span class="memory-orb">
+            <img src="assets/images/photo-4.jpg" alt="Memory 4" loading="lazy">
+            <span class="memory-placeholder-icon" aria-hidden="true">♡</span>
+          </span>
+        </button>
+
+        <button class="memory memory-five" data-image="assets/images/photo-5.jpg"
+          data-caption="A little piece of our story floating around the world." aria-label="Open memory photo 5">
+          <span class="memory-orb">
+            <img src="assets/images/photo-5.jpg" alt="Memory 5" loading="lazy">
+            <span class="memory-placeholder-icon" aria-hidden="true">♡</span>
+          </span>
+        </button>
+
+        <button class="memory memory-six" data-image="assets/images/photo-6.jpg"
+          data-caption="Another memory I never want to lose." aria-label="Open memory photo 6">
+          <span class="memory-orb">
+            <img src="assets/images/photo-6.jpg" alt="Memory 6" loading="lazy">
+            <span class="memory-placeholder-icon" aria-hidden="true">♡</span>
+          </span>
+        </button>
+
+        <!-- 3D Earth canvas (Three.js renders here) -->
+        <canvas id="earthCanvas" aria-label="Spinning 3D Earth"></canvas>
+
+        <!-- Fallback for no-WebGL -->
+        <div class="earth" aria-hidden="true">
+          <img src="assets/images/earth.svg" alt="Illustrated Earth">
+        </div>
+
+        <div class="earth-glow" aria-hidden="true"></div>
+
+        <div class="earth-copy">
+          <span>our little world</span>
+          <strong>you + me</strong>
+        </div>
+      </div>
+
+      <div class="scroll-hint">keep going ↓</div>
+    </section>
+
+    <!-- LETTER -->
+    <section class="letter-section section-shell">
+      <div class="section-kicker">a message from me to you</div>
+
+      <article class="letter-card">
+        <div class="letter-stars">✦ · ˚ ✦ · ˚ ♡ ˚ · ✦</div>
+
+        <h2>Happy birthday, my love.</h2>
+
+        <p>
+          I know you've been saying that you're not really feeling your birthday,
+          and I kept thinking about that. Because you deserve to feel celebrated.
+          Not just because it's your birthday, but because you are you.
+        </p>
+
+        <p>
+          So I made this little world for you. It isn't perfect, and it could never
+          fit everything I feel for you inside a screen, but I wanted you to have
+          somewhere that feels like ours. A place full of little pieces of us,
+          the memories I keep close, and all the things I wish I could put around
+          you in real life.
+        </p>
+
+        <p class="highlight-line">
+          I hope it feels like your birthday now, my love. ♡
+        </p>
+
+        <p>
+          I hope today reminds you that you are loved, that you matter, and that
+          your presence makes somebody's world softer and happier. Mine especially.
+          Thank you for every laugh, every conversation, every cuddle, every random
+          little moment, and every version of you that I've gotten to know.
+        </p>
+
+        <p>
+          I don't need one perfect day to explain how much I love you. But if I
+          could give you one thing today, it would be the feeling of being deeply,
+          genuinely loved.
+        </p>
+
+        <p class="signature">
+          Happy birthday, my baby.<br>
+          I love you. More than this little universe can hold. ♡
+        </p>
+      </article>
+    </section>
+
+    <!-- SONG -->
+    <section class="song-section section-shell">
+      <div class="section-kicker">press play when you're ready</div>
+
+      <div class="song-card">
+        <div class="vinyl" id="vinylDisc">
+          <div class="vinyl-center">♡</div>
+        </div>
+
+        <div class="song-copy">
+          <p class="mini-label">our birthday soundtrack</p>
+          <h2>Solar Plexus</h2>
+          <p>Marshall Vincent</p>
+          <p class="song-note">
+            I wanted this one waiting here for you.
+          </p>
+
+          <div class="song-actions">
+            <button id="localMusicButton" class="primary-button" type="button">
+              Play / Pause ♫
+            </button>
+
+            <a class="ghost-button" href="https://music.youtube.com/search?q=Solar%20Plexus%20Marshall%20Vincent"
+              target="_blank" rel="noopener noreferrer">
+              Open in YouTube Music, incase you want it ;) ♫
+            </a>
+          </div>
+
+          <audio id="localSong" preload="auto" src="assets/audio/solar-plexus.mp3" autoplay loop></audio>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="video-section section-shell">
+      <div class="section-kicker">our little movies</div>
+
+      <div class="video-card">
+        <div class="video-heading">
+          <div>
+            <p class="mini-label">only us</p>
+            <h2>Videos of us</h2>
+          </div>
+          <span class="film-icon">◉</span>
+        </div>
+
+        <div class="video-grid">
+          <!-- VIDEO 1 -->
+          <div class="video-frame">
+            <video controls playsinline preload="metadata" poster="assets/images/video-poster.svg">
+              <source src="assets/videos/us.mp4" type="video/mp4">
+              Your browser does not support the video element.
+            </video>
+
+            <div class="video-placeholder">
+              <span>♡</span>
+              <p>Drop our video here</p>
+              <small>assets/videos/us.mp4</small>
+            </div>
+          </div>
+
+          <!-- VIDEO 2 -->
+          <div class="video-frame">
+            <video controls playsinline preload="metadata" poster="assets/images/video-poster-2.svg">
+              <source src="assets/videos/us-2.mp4" type="video/mp4">
+              Your browser does not support the video element.
+            </video>
+
+            <div class="video-placeholder">
+              <span>♡</span>
+              <p>Drop your second video here</p>
+              <small>assets/videos/us-2.mp4</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRIENDS -->
+    <section class="friends-section section-shell">
+      <div class="section-kicker">messages from our people</div>
+
+      <div class="friends-heading">
+        <h2>Little pieces of love from everyone ♡</h2>
+      </div>
+
+      <div class="friend-grid">
+        <!-- FRIEND MESSAGE 1 -->
+        <article class="friend-message">
+          <span class="friend-star">✦</span>
+          <p class="friend-name">From Judge</p>
+          <p class="friend-text">
+            Happy birthday to my very own Virginiaaa 😂❤️🎉
+
+            Honestly, where do I even start? You’ve genuinely become one of my best friends and someone I hold very
+            close to my heart. At this point, you’re not even just a friend anymore—you’re family. And yes, I know
+            you’re a lot older than me, but let’s be honest… 98% of the time, I see you more as my little sister than my
+            elder sister 😹😹. The remaining 2% is when I remember your age and decide to respect myself 😂.
+            And of course, I can’t write a birthday message to you without giving your famous forehead a tiny shout-out
+            😂❤️. You already know I love teasing you about it, but honestly, I genuinely think it’s cute. It’s one of
+            those little things that just makes you… you 😂❤️.
+            I genuinely want you to know that I’ve got you. Through the good days, the bad days, the confusing days, and
+            especially those moments when you feel like there’s nobody there for you—I want you to remember that you
+            have me. I’ll always stand by you and do my best to make sure you never feel alone. OTF loves you, and at
+            this point, you’ve become a very big part of OTF too ❤️🫶🏽.
+            I pray this new chapter brings you genuine happiness, plenty wealth 💰, love, peace, good health, and
+            amazing people who genuinely care about you. You deserve a life filled with beautiful moments, genuine
+            laughter, good people, and everything your heart desires.
+            And as I’m typing this right now, just know I’m still compiling some very questionable birthday content for
+            you 😭🌚😂. I’m not saying anything yet, but just know Virginia’s birthday will NOT pass quietly 😂😂.
+            Happy birthday once again, Virginia ❤️🎂. I love and appreciate you more than I probably say, and I’m
+            genuinely grateful to have you in my life. Keep being you, keep winning, and never forget that your annoying
+            little sibling is always here for you 😂❤️.
+
+            Happy birthday, big girl! 🎉❤️
+          </p>
+        </article>
+
+        <!-- FRIEND MESSAGE 2 -->
+        <article class="friend-message">
+          <span class="friend-star">✦</span>
+          <p class="friend-name">From Gabby❤️</p>
+          <p class="friend-text">
+            Ada, who would’ve thought that one random question about our department would lead me to my babe, my elder
+            sister, my better gist partner, and one of the people I’m most grateful to have in my life? 🥺❤️
+            You’re attentive, intentional, mindful… and yes, sometimes selfish 🌚😂 but look at me now, I’ve learnt from
+            the best! And please, an expensive friend like you deserves an expensive friend like me...because obviously,
+            two babes that love money this much had to find each other. 🌚😂💅🏽....Omoo money gats dey!😂 But beyond
+            all the jokes, you’ve always rooted for me, even when it felt like you were the only one doing it. You
+            believe in me so loudly and so genuinely, and that’s something I’ll cherish forever. You bring out my inner
+            child, you make ordinary moments feel special, and somehow you became the elder sister I never had. 🥺
+            I honestly don’t know what I could give you that would ever explain how much you mean to me. Just know that
+            I love you deeply, babes. I’m so lucky to have you...and you’re lucky to have me too, Ada, don’t even argue.
+            🌚😂❤️
+            Happy birthday, my love. Gabby loves you, and you KNOW that. ❤️🥹.
+          </p>
+        </article>
+
+        <!-- FRIEND MESSAGE 3 -->
+        <article class="friend-message">
+          <span class="friend-star">✦</span>
+          <p class="friend-name">From Sauce</p>
+          <p class="friend-text">
+            Happy birthday Li
+            I'm sure you already know who's wishing you from the name.
+            I wish you a very blessed happy birthday, I love you, adore and treasure you as a person as well as your
+            presence in my life.
+            I know we've had times where we've drifted apart but somehow we always find our way back to each other's
+            hearts.
+            I personally believe not all soulmates are lovers and you're my non romantic soulmate, I love you to the
+            moon and back and I pray that everything you do will be guided by Lord
+            May the one who created the heaven and earth in so much beauty make your life worth envy.
+            May your days be long and your grace abundant.
+            Your present and future remain bright and clear in Jesus name.
+            May you age with grace just as your beauty graces us.
+            Love you to the moon and back Lii❤️💗🌹
+          </p>
+        </article>
+
+
+        <!-- FRIEND MESSAGE 4 -->
+        <article class="friend-message">
+          <span class="friend-star">✦</span>
+          <p class="friend-name">From Roadman</p>
+          <p class="friend-text">
+            Happy Birthday Virginiaaaaa
+            Your one and only son is wishing you the best birthday ever, many more years to celebrate this special day
+            with you, Love you Mama🌚❤️🎂
+          </p>
+        </article>
+
+        <!-- COPY THIS ARTICLE FOR MORE FRIENDS -->
+      </div>
+
+    </section>
+
+    <!-- ENDING -->
+    <section class="ending screen">
+      <div class="ending-orbit">♡ ✦ ♡ ✦ ♡</div>
+      <p class="eyebrow">and that's the whole point</p>
+      <h2>My baby.</h2>
+      <p class="ending-text">
+        Wherever you go, whatever this next year brings,
+        I hope you always remember that somebody is ridiculously happy
+        that you exist.
+      </p>
+      <p class="final-love">Happy birthdayyyyyy, my love. ♡</p>
+    </section>
+  </main>
+
+  <!-- MEMORY LIGHTBOX -->
+  <div id="memoryModal" class="modal" aria-hidden="true">
+    <button id="closeModal" class="modal-close" type="button" aria-label="Close memory">×</button>
+    <div class="modal-content">
+      <img id="modalImage" src="" alt="Selected memory">
+      <div id="modalPlaceholder" class="modal-placeholder">
+        <span>♡</span>
+        <p>Add this photo to bring the memory to life.</p>
+      </div>
+      <p id="modalCaption"></p>
+    </div>
+  </div>
+
+  <!-- FLOATING MUSIC BAR -->
+  <div id="floatingMusicBar" role="region" aria-label="Music player">
+    <button id="floatingPlayBtn" aria-label="Play or pause music">▶</button>
+    <div class="eq-bars" id="eqBars">
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+    </div>
+    <div class="bar-info">
+      <span class="bar-title">Solar Plexus</span>
+      <span class="bar-artist">Marshall Vincent</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

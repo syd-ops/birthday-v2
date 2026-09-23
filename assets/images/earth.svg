@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <radialGradient id="ocean" cx="34%" cy="27%" r="72%">
+      <stop offset="0" stop-color="#6db7ff"/>
+      <stop offset=".38" stop-color="#2475d9"/>
+      <stop offset=".78" stop-color="#123d91"/>
+      <stop offset="1" stop-color="#071535"/>
+    </radialGradient>
+    <radialGradient id="atmosphere">
+      <stop offset=".76" stop-color="#70b7ff" stop-opacity="0"/>
+      <stop offset=".92" stop-color="#70b7ff" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#9fd2ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8bd09a"/>
+      <stop offset=".55" stop-color="#3d9460"/>
+      <stop offset="1" stop-color="#1e5d49"/>
+    </linearGradient>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+    <clipPath id="globe">
+      <circle cx="300" cy="300" r="245"/>
+    </clipPath>
+  </defs>
+
+  <circle cx="300" cy="300" r="270" fill="url(#atmosphere)" filter="url(#blur)"/>
+  <circle cx="300" cy="300" r="250" fill="url(#ocean)"/>
+
+  <g clip-path="url(#globe)" fill="url(#land)">
+    <path d="M112 225 C135 182 170 150 213 138 L246 154 239 187 210 202 190 235 157 252 126 248Z"/>
+    <path d="M245 167 L286 151 321 169 340 202 320 227 286 214 268 239 249 224 228 195Z"/>
+    <path d="M337 184 L383 158 430 168 464 196 455 224 418 231 397 260 361 247 347 220Z"/>
+    <path d="M454 253 L493 241 528 268 519 300 483 308 461 287Z"/>
+    <path d="M254 251 L283 239 310 257 305 291 280 310 265 345 243 327 249 294 231 274Z"/>
+    <path d="M307 317 L342 298 370 319 361 351 339 372 322 413 297 397 301 360 286 339Z"/>
+    <path d="M384 286 L421 270 452 284 446 315 420 331 393 322Z"/>
+    <path d="M149 320 L184 299 215 314 225 350 202 369 170 356Z"/>
+    <path d="M101 382 L142 365 173 384 166 416 130 429 105 414Z"/>
+    <path d="M407 378 L448 359 478 378 471 409 434 423 408 405Z"/>
+  </g>
+
+  <g clip-path="url(#globe)" opacity=".16" fill="none" stroke="#d9efff">
+    <ellipse cx="300" cy="300" rx="220" ry="105"/>
+    <ellipse cx="300" cy="300" rx="220" ry="170"/>
+    <path d="M55 300h490"/>
+    <path d="M82 210h436"/>
+    <path d="M82 390h436"/>
+    <path d="M300 55c-90 80-90 410 0 490"/>
+    <path d="M300 55c90 80 90 410 0 490"/>
+  </g>
+
+  <g clip-path="url(#globe)" fill="#fff" opacity=".72">
+    <circle cx="177" cy="214" r="2"/>
+    <circle cx="214" cy="287" r="1.5"/>
+    <circle cx="365" cy="238" r="2"/>
+    <circle cx="420" cy="308" r="1.5"/>
+    <circle cx="332" cy="385" r="1.7"/>
+    <circle cx="137" cy="339" r="1.2"/>
+  </g>
+
+  <circle cx="300" cy="300" r="250" fill="none" stroke="#91caff" stroke-opacity=".45" stroke-width="4"/>
+  <circle cx="300" cy="300" r="259" fill="none" stroke="#b9dcff" stroke-opacity=".13" stroke-width="2"/>
+</svg>
